@@ -45,7 +45,6 @@ export class RegistrationWizard {
     phone: string;
     referralCode?: string;
   }) {
-    //cy.contains("label", "Username").parent().find("input").clear().type(opts.username);
     cy.get('input[id^="username"]')
       .first()
       .click({ force: true })
@@ -76,10 +75,7 @@ export class RegistrationWizard {
   }
 
   assertGenericRequiredErrors() {
-    cy.get("body")
-      .should("contain.text", "required")
-      .or("contain.text", "empty")
-      .or("contain.text", "cannot");
+    cy.get("body").should("contain.text", /required|empty|cannot/);
     return this;
   }
 
@@ -115,21 +111,23 @@ export class RegistrationWizard {
   }
 
   fillPersonalInfo(opts: { firstName: string; lastName: string; dob: string }) {
-    cy.contains("label", "First Name")
-      .parent()
-      .find("input")
-      .clear()
-      .type(opts.firstName);
-    cy.contains("label", "Last Name")
-      .parent()
-      .find("input")
-      .clear()
-      .type(opts.lastName);
-    cy.contains("label", "Date of Birth")
-      .parent()
-      .find("input")
-      .clear()
-      .type(opts.dob);
+    /*     cy.get('input[id^="username"]')
+      .first()
+      .click({ force: true })
+      .type(opts.username, { force: true }); */
+
+    cy.get('input[id="first_name"]')
+      .first()
+      .click({ force: true })
+      .type(opts.firstName, { force: true });
+    cy.get('input[id="last_name"]')
+      .first()
+      .click({ force: true })
+      .type(opts.lastName, { force: true });
+    cy.get('input[id^="birthday"]')
+      .first()
+      .click({ force: true })
+      .type(opts.dob, { force: true });
     return this;
   }
 

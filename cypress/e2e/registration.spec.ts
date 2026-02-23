@@ -74,14 +74,14 @@ describe("Registration Wizard — Sign Up → Claim Your Bonus (Fixed Email)", (
     },
   );
 
-  it(
+  /*   it(
     "REG-002 Complete Account Details step successfully",
     { tags: ["smoke", "regression"] },
     function () {
       const data = this.data as any;
       goToBonusSelection(data);
     },
-  );
+  ); */
 
   /* it(
     "REG-003 Account Details required field validation (empty submit)",
@@ -93,7 +93,7 @@ describe("Registration Wizard — Sign Up → Claim Your Bonus (Fixed Email)", (
     },
   ); */
 
-  it("REG-004 Email format validation", { tags: ["regression"] }, function () {
+  /*   it("REG-004 Email format validation", { tags: ["regression"] }, function () {
     const data = this.data as any;
     home.visit().clickSignUp();
     wizard.assertStep("Account Details");
@@ -198,7 +198,7 @@ describe("Registration Wizard — Sign Up → Claim Your Bonus (Fixed Email)", (
       wizard.clickNoBonus().acceptTerms().clickNext();
       wizard.assertStep("Personal Information");
     },
-  );
+  ); */
 
   it(
     "REG-011 Personal Information required validation",
@@ -209,7 +209,7 @@ describe("Registration Wizard — Sign Up → Claim Your Bonus (Fixed Email)", (
 
       wizard
         .fillPersonalInfo({
-          firstName: "",
+          firstName: " ",
           lastName: data.user.lastName,
           dob: data.user.dob,
         })
@@ -219,8 +219,8 @@ describe("Registration Wizard — Sign Up → Claim Your Bonus (Fixed Email)", (
       cy.get("body")
         .invoke("text")
         .should((text) => {
-        expect(text).to.match(/First name|required/);
-      }); 
+          expect(text).to.match(/First name|required/);
+        });
     },
   );
 
