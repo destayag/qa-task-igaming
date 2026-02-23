@@ -50,7 +50,9 @@ describe("Registration Wizard — Sign Up → Claim Your Bonus (Fixed Email)", (
         dob: data.user.dob,
       })
       .clickNext();
+
     wizard.assertStep("Address Details");
+    wizard.assertAddressDisplayed();
   }
 
   function goToPaymentInformation(data: any) {
@@ -283,8 +285,6 @@ describe("Registration Wizard — Sign Up → Claim Your Bonus (Fixed Email)", (
     function () {
       const data = this.data as any;
       goToAddressDetails(data);
-
-      wizard.assertAddressDisplayed();
 
       wizard
         .fillAddress({
