@@ -6,12 +6,16 @@ describe("Registration Wizard — Sign Up → Claim Your Bonus (Fixed Email)", (
   const home = new HomePage();
   const wizard = new RegistrationWizard();
 
-  const userPhone = randomPhone();
-  const userEmail = randomEmail();
-  const userName = randomUsername();
+  let userData: any;
 
   beforeEach(() => {
     cy.fixture("testData").as("data");
+
+    userData = {
+      userPhone: randomPhone(),
+      userEmail: randomEmail(),
+      userName: randomUsername(),
+    };
   });
 
   function goToBonusSelection(data: any) {
@@ -20,10 +24,10 @@ describe("Registration Wizard — Sign Up → Claim Your Bonus (Fixed Email)", (
 
     wizard
       .fillAccountDetails({
-        username: userName,
-        email: userEmail,
+        username: userData.userName,
+        email: userData.userEmail,
         password: data.user.password,
-        phone: userPhone,
+        phone: userData.userPhone,
       })
       .clickNext();
 
@@ -96,10 +100,10 @@ describe("Registration Wizard — Sign Up → Claim Your Bonus (Fixed Email)", (
 
     wizard
       .fillAccountDetails({
-        username: userName,
+        username: userData.userName,
         email: "user@",
         password: data.user.password,
-        phone: userPhone,
+        phone: userData.userPhone,
       })
       .clickNext();
 
@@ -118,10 +122,10 @@ describe("Registration Wizard — Sign Up → Claim Your Bonus (Fixed Email)", (
 
       wizard
         .fillAccountDetails({
-          username: userName,
-          email: userEmail,
+          username: userData.userName,
+          email: userData.userEmail,
           password: "12345",
-          phone: userPhone,
+          phone: userData.userPhone,
         })
         .clickNext();
 
@@ -141,8 +145,8 @@ describe("Registration Wizard — Sign Up → Claim Your Bonus (Fixed Email)", (
 
       wizard
         .fillAccountDetails({
-          username: userName,
-          email: userEmail,
+          username: userData.userName,
+          email: userData.userEmail,
           password: data.user.password,
           phone: "abc",
         })

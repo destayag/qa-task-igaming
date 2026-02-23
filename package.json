@@ -2,7 +2,7 @@
   "name": "spinbet-stage-cypress-qa",
   "version": "1.0.0",
   "private": true,
-  "description": "Production-style Cypress + TypeScript E2E suite for SpinBet Stage registration and casino search.",
+  "description": "Cypress + TypeScript E2E suite for SpinBet Stage registration and casino search.",
   "scripts": {
     "cy:open": "cypress open",
     "cy:run": "cypress run",
