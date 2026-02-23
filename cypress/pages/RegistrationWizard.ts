@@ -10,6 +10,12 @@ export class RegistrationWizard {
     return this;
   }
 
+  assertPhone(phoneLabel: string) {
+    this.assertWizardOpen();
+    cy.contains(phoneLabel).should("be.visible");
+    return this;
+  }
+
   clickNext() {
     cy.contains("button", "Next").should("be.visible").click({ force: true });
     return this;
@@ -28,13 +34,12 @@ export class RegistrationWizard {
   }
 
   clickClose() {
-    cy.get("body").then(($b) => {
-      const x = $b
-        .find("button")
-        .filter((_, el) => (el as HTMLButtonElement).innerText.includes("×"));
-      if (x.length) cy.wrap(x.first()).click({ force: true });
-      else cy.contains("×").click({ force: true });
-    });
+    cy.get('data-testid="btn-icon').click({ force: true });
+    return this;
+  }
+
+  assertFieldError(errorMessage: string) {
+    cy.contains(errorMessage).should("be.visible");
     return this;
   }
 
@@ -57,18 +62,14 @@ export class RegistrationWizard {
       .first()
       .click({ force: true })
       .type(opts.password, { log: false });
-
-    cy.contains("label", "Mobile Phone")
-      .parent()
-      .within(() => {
-        cy.get("input").last().clear().type(opts.phone);
-      });
-
+    cy.get('input[data-testid="phone_number"]')
+      .first()
+      .click({ force: true })
+      .type(opts.phone, { force: true });
     if (opts.referralCode) {
-      cy.contains("label", "Referral Code")
-        .parent()
-        .find("input")
-        .clear()
+      cy.get('input[id^="referral_code"]')
+        .first()
+        .click({ force: true })
         .type(opts.referralCode);
     }
     return this;
@@ -111,11 +112,6 @@ export class RegistrationWizard {
   }
 
   fillPersonalInfo(opts: { firstName: string; lastName: string; dob: string }) {
-    /*     cy.get('input[id^="username"]')
-      .first()
-      .click({ force: true })
-      .type(opts.username, { force: true }); */
-
     cy.get('input[id="first_name"]')
       .first()
       .click({ force: true })
@@ -131,31 +127,35 @@ export class RegistrationWizard {
     return this;
   }
 
+  assertAddressDisplayed() {
+    cy.get('div[id="state_id"]').should("be.visible");
+    cy.get('input[id="address"]').should("be.visible");
+    return this;
+  }
+
   fillAddress(opts: {
     address: string;
     city: string;
     region: string;
     zip: string;
   }) {
-    cy.contains("label", "Address")
-      .parent()
-      .find("input")
-      .clear()
-      .type(opts.address);
-    cy.contains("label", "City").parent().find("input").clear().type(opts.city);
+    cy.get('input[id="address"]')
+      .first()
+      .click({ force: true })
+      .type(opts.address, { force: true });  
+    cy.get('input[id="city_name"]')
+      .first()
+      .click({ force: true })
+      .type(opts.city, { force: true }); 
+    cy.get('input[id="post_code"]')
+      .first()
+      .click({ force: true })
+      .type(opts.zip, { force: true });
+    cy.get('div[id="state_id"]').click();
+    cy.contains(opts.region)
+      .should('be.visible')
+      .click();
 
-    cy.contains("label", "Region")
-      .parent()
-      .within(() => {
-        cy.contains("Region").click({ force: true });
-      });
-    cy.contains(opts.region).click({ force: true });
-
-    cy.contains("label", "Zipcode")
-      .parent()
-      .find("input")
-      .clear()
-      .type(opts.zip);
     return this;
   }
 

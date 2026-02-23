@@ -6,6 +6,7 @@ export default defineConfig({
     specPattern: "cypress/e2e/**/*.spec.ts",
     supportFile: "cypress/support/e2e.ts",
     video: true,
+    videoCompression: false,
     screenshotOnRunFailure: true,
     retries: {
       runMode: 2,

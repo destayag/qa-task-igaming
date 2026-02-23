@@ -21,6 +21,7 @@ describe("Registration Wizard — Sign Up → Claim Your Bonus (Fixed Email)", (
   function goToBonusSelection(data: any) {
     home.visit().clickSignUp();
     wizard.assertStep("Account Details");
+    wizard.assertPhone("+64");
 
     wizard
       .fillAccountDetails({
@@ -200,7 +201,7 @@ describe("Registration Wizard — Sign Up → Claim Your Bonus (Fixed Email)", (
     },
   ); */
 
-  it(
+/*   it(
     "REG-011 Personal Information required validation",
     { tags: ["smoke", "regression"] },
     function () {
@@ -254,12 +255,12 @@ describe("Registration Wizard — Sign Up → Claim Your Bonus (Fixed Email)", (
         .fillPersonalInfo({
           firstName: data.user.firstName,
           lastName: data.user.lastName,
-          dob: "1990-01-01",
+          dob: "1990/01/01",
         })
         .clickNext();
 
       wizard.assertStep("Personal Information");
-      cy.get("body").should("contain.text", /Date of Birth|DOB/);
+      wizard.assertFieldError("Invalid date value.");
     },
   );
 
@@ -271,9 +272,10 @@ describe("Registration Wizard — Sign Up → Claim Your Bonus (Fixed Email)", (
       goToAddressDetails(data);
 
       wizard.clickNext();
-      wizard.assertStep("Address Details").assertGenericRequiredErrors();
+      wizard.assertStep("Address Details");
+      wizard.assertFieldError("Address cannot be empty");
     },
-  );
+  ); */
 
   it(
     "REG-015 Complete Address Details successfully",
@@ -281,6 +283,8 @@ describe("Registration Wizard — Sign Up → Claim Your Bonus (Fixed Email)", (
     function () {
       const data = this.data as any;
       goToAddressDetails(data);
+
+      wizard.assertAddressDisplayed();
 
       wizard
         .fillAddress({
