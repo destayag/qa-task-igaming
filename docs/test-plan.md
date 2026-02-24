@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-**Goal:** Validate two critical customer journeys on SpinBet Stage using production-quality E2E automation in **Cypress + TypeScript**.
+**Goal:** Validate two critical customer journeys on SpinBet Stage using E2E automation in **Cypress + TypeScript**.
 
 **In scope**
 
@@ -57,7 +57,8 @@ We tag tests directly in titles to keep the suite dependency-free and easy to re
 - Step 02 (Bonus Selection): select bonus card, `Promo Code (optional)`, checkbox “Get Exclusive Updates”, checkbox “I agree and understand the Terms of Conditions”, button “I don’t want a bonus”, **Next**
 - Step 03 (Personal Information): `First Name`, `Last Name`, `Date of Birth (DD/MM/YYYY)`
 - Step 04 (Address Details): `Address`, `City`, `Region (dropdown)`, `Zip Code`
-- Step 05 (Payment Information): method list (e.g., Neteller, Skrill, Credit Card, CoinsPaid, Mifinity), “Show More Payments”
+- Step 05 (Payment Information): method list (e.g., Neteller, Skrill, Credit Card, CoinsPaid, Mifinity), “Show More Payments”)
+- Final: **Claim Your Bonus**
 
 **Casino lobby/search observed**
 
@@ -72,15 +73,15 @@ We tag tests directly in titles to keep the suite dependency-free and easy to re
 - **Base URL:** `https://stage.spinbet.com/en-nz`
 - **Casino URL:** `https://stage.spinbet.com/en-nz/casino`
 - **Browser:** Chrome/Chromium (primary in CI)
-- **Viewport:** Desktop baseline (e.g., 1280×720). Optional: one responsive check for critical flow.
+- **Viewport:** Desktop baseline (e.g., 1920x1080).
 
 ## 4. Test Data
 
 ### 4.1 Account Data (Unique per run)
 
-- Email: `qa+<timestamp>@example.com` (generated at runtime)
+- Email: `des.qatask+{random}@gmail.com` (generated at runtime)
 - Password: `SpinbetQA!23456` (meets typical complexity; adjust if stricter)
-- Phone (NZ): example `0211234567` with `+64` country code selected
+- Phone (NZ): example `0211234567` with `+64` country code selected (generated at runtime)
 - DOB: `01/01/1990` (adult)
 - Address: realistic NZ sample (e.g., `1 Queen Street`, `Auckland`, `Auckland`, `1010`)
 
@@ -109,9 +110,7 @@ We tag tests directly in titles to keep the suite dependency-free and easy to re
 | ------------------------------------------ | ------------------------ | -------------------------------------------------------------------------------------------- |
 | Flaky UI due to animations/overlays        | Intermittent failures    | Use stable selectors, close overlays, assert state instead of fixed waits                    |
 | Unique email requirement                   | Duplicate failures       | Generate unique email per test run                                                           |
-| Captcha/anti-bot                           | Blocking automation      | Request QA bypass on Stage; mark as known limitation if present                              |
-| Game loads in iframe/provider container    | Hard to assert “running” | Assert container visible + iframe src non-empty + “loading” removed (best-effort)            |
-| Payment step may require external provider | Unstable                 | Do not execute real deposits; validate payment method list renders and step navigation works |
+
 
 ## 7. Automation Approach (Cypress + TypeScript + POM)
 
@@ -130,7 +129,7 @@ Preference order:
 1. `data-testid` / `data-test` attributes (best)
 2. Accessibility attributes (labels/roles)
 3. Stable text selectors (only for fixed labels like “Sign Up”, “Next”)
-4. CSS selectors (avoid deep DOM chains)
+4. CSS selectors (last option)
 
 ### 7.3 Reporting & Debugging
 
@@ -141,7 +140,7 @@ Preference order:
 
 ### Suites
 
-- **Smoke**: fast checks for pipeline gating
+- **Smoke**: fast checks for pipeline gates
 - **Regression**: full coverage including negative/edge cases
 
 ### Suggested Run Commands

@@ -40,7 +40,7 @@
 **Test Data (example):**
 
 - Username: `JohnDoeQA`
-- Email: unique email (`qa+<timestamp>@example.com`)
+- Email: unique email (`des.qatask+{random}@gmail.com`)
 - Password: `SpinbetQA!23456` (>= 6 chars)
 - Phone: `0211234567` with country code `+64`
   **Steps:**
@@ -242,7 +242,7 @@
 
 - Address: `1 Queen Street`
 - City: `Auckland`
-- Region: `Auckland` (select from dropdown)
+- Region: `Auckland Region` (select from dropdown)
 - Zip Code: `1010`
   **Steps:**
 
@@ -461,12 +461,3 @@
 - Underlying casino page remains usable
 
 ---
-
-## Traceability (High-level)
-
-| Requirement                             | Covered by                                                    |
-| --------------------------------------- | ------------------------------------------------------------- |
-| Registration flow to “Claim Your Bonus” | REG-001, REG-002, REG-008, REG-012, REG-015, REG-016, REG-017 |
-| Registration validation/negative checks | REG-003–REG-007, REG-011, REG-013–REG-014                     |
-| Casino search and open game             | CAS-001–CAS-007                                               |
-| Search negative/edge cases              | CAS-003–CAS-004, CAS-008–CAS-010                              |
