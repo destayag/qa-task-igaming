@@ -11,8 +11,7 @@ const BASE_URLS: Record<string, string> = {
 
 export default defineConfig({
   e2e: {
-    baseUrl:
-      process.env.CYPRESS_BASE_URL || BASE_URLS.stage,
+    baseUrl: process.env.CYPRESS_BASE_URL || BASE_URLS.stage,
 
     specPattern: "cypress/e2e/**/*.spec.ts",
     supportFile: "cypress/support/e2e.ts",

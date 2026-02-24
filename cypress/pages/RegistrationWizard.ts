@@ -23,13 +23,7 @@ export class RegistrationWizard {
 
   clickBack() {
     // back arrow button in card header (best-effort)
-    cy.get("body").then(($b) => {
-      const possible = $b
-        .find("button")
-        .filter((_, el) => (el as HTMLButtonElement).innerText.trim() === "");
-      if (possible.length) cy.wrap(possible.first()).click({ force: true });
-      else cy.get("button").first().click({ force: true });
-    });
+    cy.get('div[data-testid="back-button-id"]').click();
     return this;
   }
 

@@ -1,8 +1,6 @@
 export class SearchOverlay {
   assertOpen() {
     cy.get("#search").should("be.visible");
-    //cy.contains("Casino").should("be.visible");
-    //cy.contains("Sports").should("be.visible");
     return this;
   }
 
@@ -18,7 +16,6 @@ export class SearchOverlay {
 
   assertHasAnyResult() {
     cy.contains("Search Result").should("be.visible");
-    //cy.get("body").should("not.contain.text", "No results found");
     return this;
   }
 

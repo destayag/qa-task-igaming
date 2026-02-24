@@ -138,6 +138,7 @@ npm run cy:regression
 ## CI
 
 Designed to run in GitHub Actions:
+
 - Headless execution
 - Screenshot on failure
 - Parallel-ready structure

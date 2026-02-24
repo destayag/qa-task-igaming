@@ -1,12 +1,5 @@
 /// <reference types="cypress" />
 
-type UniqueUser = {
-  username: string;
-  email: string;
-  password: string;
-  phone: string;
-};
-
 Cypress.Commands.add("closeOverlaysIfPresent", () => {
   cy.get("body").then(($body) => {
     const possibleButtons = [
