@@ -106,11 +106,10 @@ We tag tests directly in titles to keep the suite dependency-free and easy to re
 
 ## 6. Risks & Mitigations
 
-| Risk                                       | Impact                   | Mitigation                                                                                   |
-| ------------------------------------------ | ------------------------ | -------------------------------------------------------------------------------------------- |
-| Flaky UI due to animations/overlays        | Intermittent failures    | Use stable selectors, close overlays, assert state instead of fixed waits                    |
-| Unique email requirement                   | Duplicate failures       | Generate unique email per test run                                                           |
-
+| Risk                                | Impact                | Mitigation                                                                |
+| ----------------------------------- | --------------------- | ------------------------------------------------------------------------- |
+| Flaky UI due to animations/overlays | Intermittent failures | Use stable selectors, close overlays, assert state instead of fixed waits |
+| Unique email requirement            | Duplicate failures    | Generate unique email per test run                                        |
 
 ## 7. Automation Approach (Cypress + TypeScript + POM)
 

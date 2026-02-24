@@ -34,7 +34,7 @@ export class RegistrationWizard {
   }
 
   clickClose() {
-    cy.get('data-testid="btn-icon').click({ force: true });
+    cy.get('button[data-testid="close-button-id"]').click({ force: true });
     return this;
   }
 
@@ -128,8 +128,9 @@ export class RegistrationWizard {
   }
 
   assertAddressDisplayed() {
+    cy.get('input[id="address"]').click();
     cy.get('div[id="state_id"]').should("be.visible");
-    cy.get('input[id="address"]').should("be.visible");
+
     return this;
   }
 
@@ -142,19 +143,17 @@ export class RegistrationWizard {
     cy.get('input[id="address"]')
       .first()
       .click({ force: true })
-      .type(opts.address, { force: true });  
+      .type(opts.address, { force: true });
     cy.get('input[id="city_name"]')
       .first()
       .click({ force: true })
-      .type(opts.city, { force: true }); 
+      .type(opts.city, { force: true });
     cy.get('input[id="post_code"]')
       .first()
       .click({ force: true })
       .type(opts.zip, { force: true });
     cy.get('div[id="state_id"]').click();
-    cy.contains(opts.region)
-      .should('be.visible')
-      .click();
+    cy.contains(opts.region).should("be.visible").click();
 
     return this;
   }

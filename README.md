@@ -8,16 +8,16 @@ journeys:
 2.  Casino Lobby Search --- search for a game (e.g., Sweet Bonanza),
     open it, and verify it's running
 
-------------------------------------------------------------------------
+---
 
 ## Tech Stack
 
--   Cypress
--   TypeScript
--   Page Object Model (POM)
--   Tag-based execution (smoke / regression)
+- Cypress
+- TypeScript
+- Page Object Model (POM)
+- Tag-based execution (smoke / regression)
 
-------------------------------------------------------------------------
+---
 
 ## Project Structure
 
@@ -43,68 +43,68 @@ journeys:
     ├─ package.json
     └─ README.md
 
-------------------------------------------------------------------------
+---
 
 ## Documentation
 
--   Test Plan: `docs/test-plan.md`
--   Test Cases: `docs/test-cases.md`
+- Test Plan: `docs/test-plan.md`
+- Test Cases: `docs/test-cases.md`
 
 These documents include full scope, coverage, test data, priorities, and
 risk considerations.
 
-------------------------------------------------------------------------
+---
 
 ## Test Suites & Tags
 
 Each test is tagged for selective execution:
 
--   `smoke` → critical path validation
--   `regression` → extended validation & negative scenarios
+- `smoke` → critical path validation
+- `regression` → extended validation & negative scenarios
 
 Example:
 
-``` ts
+```ts
 it("REG-001 Open registration wizard", { tags: ["smoke", "regression"] }, () => {
   ...
 });
 ```
 
-------------------------------------------------------------------------
+---
 
 ## How to Run
 
 ### Install dependencies
 
-``` bash
+```bash
 npm install
 ```
 
 ### Open Cypress
 
-``` bash
+```bash
 npm run cy:open
 ```
 
 ### Run all tests
 
-``` bash
+```bash
 npm run cy:run
 ```
 
 ### Run Smoke tests only
 
-``` bash
+```bash
 npm run cy:smoke
 ```
 
 ### Run Regression tests only
 
-``` bash
+```bash
 npm run cy:regression
 ```
 
-------------------------------------------------------------------------
+---
 
 ## Environment Configuration
 
@@ -114,23 +114,23 @@ Base URL:
 
 Override example:
 
-``` bash
+```bash
 CYPRESS_BASE_URL=https://stage.spinbet.com/en-nz npm run cy:run
 ```
 
-------------------------------------------------------------------------
+---
 
 ## CI
 
 Designed to run in GitHub Actions: - Headless execution - Screenshot on
 failure - Smoke gating for PR validation - Parallel-ready structure
 
-------------------------------------------------------------------------
+---
 
 ## Notes
 
--   If using a fixed email for registration, ensure the account is reset
-    between runs.
--   Dynamic test data (email/phone) is recommended for regression
-    stability.
--   Prefer stable selectors (e.g., data-testid) if available.
+- If using a fixed email for registration, ensure the account is reset
+  between runs.
+- Dynamic test data (email/phone) is recommended for regression
+  stability.
+- Prefer stable selectors (e.g., data-testid) if available.

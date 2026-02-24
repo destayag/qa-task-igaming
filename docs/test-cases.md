@@ -61,10 +61,10 @@
 **Steps:**
 
 1. Open Account Details
-2. Click **Next** without filling required fields
+2. Try clicking **Next** without filling required fields
    **Expected:**
 
-- Required field errors appear (e.g., username/email/password/phone)
+- **Next** is disabled.
 - User remains on Step 01
 
 ---

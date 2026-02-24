@@ -77,26 +77,16 @@ describe("Registration Wizard — Sign Up → Claim Your Bonus (Fixed Email)", (
     },
   );
 
-  /*   it(
+  it(
     "REG-002 Complete Account Details step successfully",
     { tags: ["smoke", "regression"] },
     function () {
       const data = this.data as any;
       goToBonusSelection(data);
     },
-  ); */
+  );
 
-  /* it(
-    "REG-003 Account Details required field validation (empty submit)",
-    { tags: ["regression"] },
-    () => {
-      home.visit().clickSignUp();
-      wizard.assertStep("Account Details").clickNext();
-      wizard.assertStep("Account Details").assertGenericRequiredErrors();
-    },
-  ); */
-
-  /*   it("REG-004 Email format validation", { tags: ["regression"] }, function () {
+  it("REG-004 Email format validation", { tags: ["regression"] }, function () {
     const data = this.data as any;
     home.visit().clickSignUp();
     wizard.assertStep("Account Details");
@@ -201,9 +191,9 @@ describe("Registration Wizard — Sign Up → Claim Your Bonus (Fixed Email)", (
       wizard.clickNoBonus().acceptTerms().clickNext();
       wizard.assertStep("Personal Information");
     },
-  ); */
+  );
 
-/*   it(
+  it(
     "REG-011 Personal Information required validation",
     { tags: ["smoke", "regression"] },
     function () {
@@ -277,7 +267,7 @@ describe("Registration Wizard — Sign Up → Claim Your Bonus (Fixed Email)", (
       wizard.assertStep("Address Details");
       wizard.assertFieldError("Address cannot be empty");
     },
-  ); */
+  );
 
   it(
     "REG-015 Complete Address Details successfully",
@@ -305,6 +295,7 @@ describe("Registration Wizard — Sign Up → Claim Your Bonus (Fixed Email)", (
     function () {
       const data = this.data as any;
       goToPaymentInformation(data);
+
       wizard.assertPaymentMethodsVisible();
     },
   );
@@ -315,7 +306,8 @@ describe("Registration Wizard — Sign Up → Claim Your Bonus (Fixed Email)", (
     function () {
       const data = this.data as any;
       goToPaymentInformation(data);
-      wizard.assertClaimYourBonusExists();
+
+      wizard.assertStep("Show More Payments");
     },
   );
 

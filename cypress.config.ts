@@ -14,6 +14,7 @@ export default defineConfig({
     },
     defaultCommandTimeout: 15000,
     pageLoadTimeout: 60000,
+    slowTestThreshold: 1000,
     viewportWidth: 1920,
     viewportHeight: 1080,
     env: {
