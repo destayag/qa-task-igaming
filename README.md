@@ -135,24 +135,12 @@ npm run cy:regression
 
 ---
 
-## Environment Configuration
-
-Base URL:
-
-    https://stage.spinbet.com/en-nz
-
-Override example:
-
-```bash
-CYPRESS_BASE_URL=https://stage.spinbet.com/en-nz npm run cy:run
-```
-
----
-
 ## CI
 
-Designed to run in GitHub Actions: - Headless execution - Screenshot on
-failure - Smoke gating for PR validation - Parallel-ready structure
+Designed to run in GitHub Actions:
+- Headless execution
+- Screenshot on failure
+- Parallel-ready structure
 
 ---
 
